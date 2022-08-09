@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        
     }
 
     void Update()
@@ -37,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 lerpCrouch = false;
                 crouchTimer = 0f;
+                
             }
         }
     }

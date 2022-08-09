@@ -12,7 +12,8 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     private LayerMask mask;
     private PlayerUI playerUI;
-    private InputManager inputManager;
+     InputManager inputManager;
+    public PlayerInput playerInp;
     
 
    
@@ -22,12 +23,15 @@ public class PlayerInteract : MonoBehaviour
     {
         cam = GetComponent<PlayerLook>().cam;
         playerUI = GetComponent<PlayerUI>();
-        inputManager = GetComponent<InputManager>();
+         inputManager = GetComponent<InputManager>();
+        
+        playerInp = new PlayerInput();
     }
 
     
     void Update()
     {
+        
         playerUI.UpdateText(string.Empty);
         // create a ray at the center of the camera, shooting a ray forward
        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
@@ -37,17 +41,19 @@ public class PlayerInteract : MonoBehaviour
         {
             if(hitInfo.collider.GetComponent<Interactables>() != null)
             {
-
+               
                 Interactables interactables = hitInfo.collider.GetComponent<Interactables>();
                 playerUI.UpdateText(interactables.promptMessage);
-                if(inputManager.gameObject.name.Equals("Player"))
+                if(inputManager.onFoot.Interact.triggered)
                 {
+                    Debug.Log("E press");
                     interactables.BaseInteract();
+                    
                 }
             }   
         }
 
-
+        
          
     }
 

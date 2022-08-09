@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 { 
     
     private PlayerInput playerInput;
-    private PlayerInput.OnFootActions onFoot;
+    public PlayerInput.OnFootActions onFoot;
 
 
 
@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
     public GameObject crossHair;
 
     public bool isAiming;
-    
+    InputManager inputManage;
 
     Coroutine fireCoroutine;
 
@@ -39,10 +39,11 @@ public class InputManager : MonoBehaviour
         onFoot.Shoot.canceled += _ => StopFiring();
         onFoot.Aim.performed += e => AimingPressed();
         onFoot.ReleaseAim.performed += e => AimingReleased();
-
         
 
 
+
+        inputManage = GetComponent<InputManager>();
 
     }
 
@@ -51,7 +52,7 @@ public class InputManager : MonoBehaviour
     {
         movement.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
         
-
+        
     }
 
     void StartFiring()
