@@ -21,6 +21,8 @@ public class Gun : MonoBehaviour
     WaitForSeconds reloadWait;
 
     public ParticleSystem muzzleFlash;
+   
+    AudioSource shootingSound;
     
     
 
@@ -28,6 +30,7 @@ public class Gun : MonoBehaviour
 
     private void Awake()
     {
+        shootingSound = GetComponent<AudioSource>();
         cam = Camera.main.transform;
         rapidFireWait = new WaitForSeconds(0.5f / fireRate);
         reloadWait = new WaitForSeconds(reloadTime);
@@ -40,6 +43,7 @@ public class Gun : MonoBehaviour
         currentAmmo--; //currentAmmo = currentAmmo -1
         RaycastHit hit;
         muzzleFlash.Play();
+        shootingSound.Play();
         
       
         if (Physics.Raycast(cam.position, cam.forward, out hit, range))

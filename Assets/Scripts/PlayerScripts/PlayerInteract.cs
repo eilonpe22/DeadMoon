@@ -40,7 +40,7 @@ public class PlayerInteract : MonoBehaviour
 
                 Interactables interactables = hitInfo.collider.GetComponent<Interactables>();
                 playerUI.UpdateText(interactables.promptMessage);
-                if(inputManager.gameObject.name.Equals("Player"))
+                if(inputManager.onFoot.Interact.triggered)
                 {
                     interactables.BaseInteract();
                 }
