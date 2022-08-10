@@ -53,8 +53,22 @@ public class EnemyAi : MonoBehaviour
             ChasePlayer();
             animator.SetBool("AwareToPlayer", true);
             agent.speed = chaseSpeed;
+
         }
-        if(playerInAttackRange && playerInSightRange) AttackPlayer();
+        if (playerInAttackRange && playerInSightRange)
+        {
+            AttackPlayer();
+            animator.SetBool("Attack", true);
+            agent.acceleration = 1;
+        }
+
+        if (!playerInAttackRange && playerInSightRange)
+        {
+            ChasePlayer();
+            animator.SetBool("Attack", false);
+            agent.acceleration = 4;
+        }
+
     }
 
     private void Patroling()
@@ -86,6 +100,7 @@ public class EnemyAi : MonoBehaviour
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
+        transform.LookAt(player);
     }
 
     private void AttackPlayer()
