@@ -12534,6 +12534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  crouchSpeed: 3
   gravity: -7.5
   jumpHeight: 4
   crouching: 0
